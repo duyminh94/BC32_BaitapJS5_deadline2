@@ -1,4 +1,5 @@
 /* Bài 1 */
+function baitap1 () {
 let myname = document.getElementById("myname").value;
   let total = +document.getElementById("total").value;
   let dperson = +document.getElementById("dperson").value;
