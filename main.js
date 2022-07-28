@@ -1,12 +1,12 @@
 /* Bài 1 */
-function baitap1() {
-  /* Bước 1 Đầu vào */
-  let myname = document.getElementById("myname").value;
+let myname = document.getElementById("myname").value;
   let total = +document.getElementById("total").value;
   let dperson = +document.getElementById("dperson").value;
   /* Bước 2 Xử lý */
+  let tax = total - 4000000 - (dperson * 1600000);
   /* Kiểm tra thông tin khách hàng nhập */
-  if (!total || total <= 4000000) {
+  if (!total || tax <= 0) {
+
     alert("Số tiền thu nhập không hợp lệ");
     document.getElementById("taxshow").innerHTML =
       "Họ Tên: " +
@@ -16,10 +16,15 @@ function baitap1() {
       " 0 " +
       "vnd";
       return
-  } 
+  }
+  
+  
+  
+
   let currentFormat = new Intl.NumberFormat("vn-VN");
 
-  totalmoney = calcPrice(total,dperson, 5, 10, 15, 20, 25, 30, 35);
+  
+  totalmoney = calcPrice(tax, 5, 10, 15, 20, 25, 30, 35);
 
   /* Đầu ra */
   document.getElementById("taxshow").innerHTML =
@@ -31,22 +36,22 @@ function baitap1() {
     "vnd";
 }
 
-function calcPrice(total, dperson, taxs1, taxs2, taxs3, taxs4, taxs5, taxs6, taxs7) {
+function calcPrice(tax, taxs1, taxs2, taxs3, taxs4, taxs5, taxs6, taxs7) {
   let totalmoney = 0;
-  if (total <= 60000000) {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs1 / 100);
-  } else if (total <= 120000000) {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs2 / 100);
-  } else if (total <= 210000000) {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs3 / 100);
-  } else if (total <= 384000000) {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs4 / 100);
-  } else if (total <= 624000000) {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs5 / 100);
-  } else if (total <= 960000000) {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs6 / 100);
+  if (tax <= 60000000) {
+    totalmoney = tax * (taxs1 / 100);
+  } else if (tax <= 120000000) {
+    totalmoney = tax * (taxs2 / 100);
+  } else if (tax <= 210000000) {
+    totalmoney = tax * (taxs3 / 100);
+  } else if (tax <= 384000000) {
+    totalmoney = tax * (taxs4 / 100);
+  } else if (tax <= 624000000) {
+    totalmoney = tax * (taxs5 / 100);
+  } else if (tax <= 960000000) {
+    totalmoney = tax * (taxs6 / 100);
   } else {
-    totalmoney = (total - 4000000 - (dperson * 1600000)) * (taxs7 / 100);
+    totalmoney = tax * (taxs7 / 100);
   }
   return totalmoney;
 }
@@ -57,7 +62,7 @@ function calcPrice(total, dperson, taxs1, taxs2, taxs3, taxs4, taxs5, taxs6, tax
  * - Tạo biến myname, total, dperson cho người dùng nhập vào
  * Xử lý:
  * - DOM giá trị người dùng nhập về, kiểm tra tổng thu nhập của năm 
- * - Viết hàm fuction tính thuế (totalmoney) = thu nhập chịu thuế (Tổng thu nhập năm - 4000000 - (Số người phụ thuộc * 1.6tr)) * thuế suất % 
+ * - Viết hàm fuction tính thuế totalmoney
  * - Ta gọi biến hàm 
  * Đầu ra:
  * - Thông báo họ tên, và số tiền thuế thu nhập
